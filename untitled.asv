@@ -1,0 +1,34 @@
+clc;
+clear;
+% Load the MNIST CSV file (update with actual filename)
+filename= fullfile('datasets','mnist_test.csv');
+data = csvread(filename);  % or your full training set
+
+figure;
+hold on;
+
+digits_to_plot = 0:9;
+samples_per_digit = 1;
+
+for digit = digits_to_plot
+    % Find indices of this digit in the dataset
+    idx = find(data(:, 1) == digit);
+    % Take first N samples
+    idx = idx(1:samples_per_digit);
+    
+    for j = 1:samples_per_digit
+        sample = data(idx(j), 2:end);
+        img = reshape(sample, [28, 28])';
+
+        % Calculate position for subplot-like grid
+        x_offset = (j-1) * 28;
+        y_offset = (digit) * 28;
+
+        % Display the image using imagesc with offset
+        imagesc(x_offset + (1:28), y_offset + (1:28), img);
+    end
+end
+
+colormap('gray');
+axis equal off;
+title('MNIST digits 0–9 with multiple examples');

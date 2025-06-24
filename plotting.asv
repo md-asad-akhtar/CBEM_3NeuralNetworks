@@ -1,0 +1,37 @@
+clc;
+clear;
+
+% Load the MNIST CSV file
+filename = fullfile('datasets','mnist_train_100.csv');
+data = csvread(filename);
+
+figure;
+colormap('gray');  % consistent grayscale
+axis off;
+hold on;
+
+digits_to_plot = 0:9;
+
+samples_per_digit=0;
+for digit = digits_to_plot
+    idx = find(data(:, 1) == digit);
+    if find(data(:, 1) == digit)
+  samples_per_digit= samples_per_digit+1;
+    end
+    idx = idx(1:samples_per_digit);
+
+    for j = 1:samples_per_digit
+        sample = data(idx(j), 2:end);
+        img = reshape(sample, [28, 28])';
+        flipped = flipud(img);  % fix here
+
+        % Position the digit image in grid
+        x_offset = (j-1) * 28;
+        y_offset = (digit) * 28;
+
+        imagesc(x_offset + (1:28), y_offset + (1:28), flipped);
+    end
+end
+
+axis equal off;
+title('MNIST digits 0–9 (flipped vertically)');
