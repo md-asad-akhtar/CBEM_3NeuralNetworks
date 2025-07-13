@@ -31,4 +31,4 @@ for digit = digits_to_plot
 end
 
 axis equal off;
-title('MNIST digits 0–9 (flipped vertically)');
+title(' Digits 0–9 ');
