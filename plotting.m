@@ -1,12 +1,12 @@
 clc;
 clear;
 
-% Load the MNIST CSV file
+
 filename = fullfile('datasets','mnist_train_100.csv');
 data = csvread(filename);
 
 figure;
-colormap('gray');  % consistent grayscale
+colormap('gray');  
 axis off;
 hold on;
 
@@ -22,7 +22,7 @@ for digit = digits_to_plot
         img = reshape(sample, [28, 28])';
         flipped = flipud(img);  % fix here
 
-        % Position the digit image in grid
+        % for positioning
         x_offset = (j-1) * 28;
         y_offset = (digit) * 28;
 
